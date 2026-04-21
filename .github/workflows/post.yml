@@ -5,12 +5,16 @@ on:
     - cron: "0 8 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   post:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -25,3 +29,11 @@ jobs:
         env:
           FB_TOKEN: ${{ secrets.FB_TOKEN }}
           PAGE_ID: ${{ secrets.PAGE_ID }}
+
+      - name: Commit updated counter
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add counter.txt
+          git commit -m "update counter" || echo "no changes"
+          git push
