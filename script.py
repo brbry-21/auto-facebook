@@ -25,7 +25,7 @@ def post_image(i):
         print("CHECK PATH:", image_path)
         print("EXISTS:", os.path.exists(image_path))
         
-    caption = f"#الأسماء_والصفات__{i-1}"
+    caption = f"#الأسماء_والصفات_{i-1}"
 
     url = f"https://graph.facebook.com/{PAGE_ID}/photos"
 
