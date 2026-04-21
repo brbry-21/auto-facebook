@@ -28,18 +28,29 @@ def post_image(i):
     caption = f"#الأسماء_والصفات_{i-1}"
 
     url = f"https://graph.facebook.com/{PAGE_ID}/photos"
-
+    
     data = {
-    "caption": caption,
-    "access_token": ACCESS_TOKEN,
-    "published": True
+    "published": False,
+    "access_token": ACCESS_TOKEN
     }
-
+    
     files = {
-        "source": open(image_path, "rb")
+    "source": open(image_path, "rb")
     }
-
+    
     r = requests.post(url, data=data, files=files)
+    photo_id = r.json()["id"]
+
+    url = f"https://graph.facebook.com/{PAGE_ID}/feed"
+    
+    data = {
+    "message": caption,
+    "attached_media[0]": f'{{"media_fbid":"{photo_id}"}}',
+    "access_token": ACCESS_TOKEN
+    }
+    
+    r = requests.post(url, data=data)
+    print(r.json())
     
     print("STATUS CODE:", r.status_code)
     print("RESPONSE:", r.text)
