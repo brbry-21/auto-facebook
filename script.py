@@ -16,7 +16,7 @@ def save_index(i):
         f.write(str(i))
 
 def post_image(i):
-    image_path = os.path.join(IMAGE_FOLDER, f"{i}.jpg")
+    image_path = os.path.join(IMAGE_FOLDER, f"{i}.png")
 
     if not os.path.exists(image_path):
         print("No more images.")
