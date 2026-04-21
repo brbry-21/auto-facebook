@@ -36,7 +36,9 @@ def post_image(i):
     }
 
     r = requests.post(url, data=data, files=files)
-    print(r.json())
+    
+    print("STATUS CODE:", r.status_code)
+    print("RESPONSE:", r.text)
 
     save_index(i + 1)
 
