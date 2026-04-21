@@ -30,8 +30,9 @@ def post_image(i):
     url = f"https://graph.facebook.com/{PAGE_ID}/photos"
 
     data = {
-        "caption": caption,
-        "access_token": ACCESS_TOKEN
+    "caption": caption,
+    "access_token": ACCESS_TOKEN,
+    "published": True
     }
 
     files = {
