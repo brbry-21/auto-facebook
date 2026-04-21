@@ -21,7 +21,10 @@ def post_image(i):
     if not os.path.exists(image_path):
         print("No more images.")
         return
-
+        
+        print("CHECK PATH:", image_path)
+        print("EXISTS:", os.path.exists(image_path))
+        
     caption = f"#free_{i}"
 
     url = f"https://graph.facebook.com/{PAGE_ID}/photos"
